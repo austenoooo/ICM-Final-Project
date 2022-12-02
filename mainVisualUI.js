@@ -1,3 +1,12 @@
+function mainVisGui(){
+  displayDay();
+  
+  let windowW = width / 4.5;
+  let windowH = height / 12;
+  let margin = 10;
+  allWindow(windowW, windowH, margin);
+}
+
 function displayDay(){
   fill(255);
   textAlign(LEFT, CENTER);

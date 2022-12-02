@@ -1,4 +1,4 @@
-let moodIndex = [1, 2, 3, 3, 5, 4, 3, 2, 1, 3, 4, 5, 5, 3, 3, 4, 1, 2, 3, 3, 3, 4, 5, 5, 3, 2, 2, 1, 1, 0];
+let moodIndex = [1, 2, 3, 3, 5, 4, 3, 2, 5, 3, 4, 5, 5, 3, 3, 4, 1, 2, 3, 3, 4, 4, 5, 5, 3, 2, 2, 1, 1, 0];
 let monthFeature = [
   {text: "JAN", dayCount: 31},
   {text: "FEB", dayCount: 29},
@@ -38,8 +38,11 @@ let currentPage = 3;
 // period related parameters 
 let periodDuration = 6;
 let cycleDuration = 30;
-let lastPeriodDay = 3;
+let lastPeriodDay = 20;
 let lastPeriodMonth = 10;
+
+let oesVisShow = false;
+let pogVisShow = false;
 
 
 // calculate the ovulation day
@@ -91,9 +94,15 @@ function draw() {
     visualization(radius);
     push();
     blendMode(LIGHTEST);
-    oestrogenVis(radius);
-    pogestrogenVis(radius);
+    if (oesVisShow){
+      oestrogenVis(radius);
+    }
+    if (pogVisShow){
+      pogestrogenVis(radius);
+    }
     pop();
+
+    mainVisGui();
   }
  
 
@@ -101,14 +110,13 @@ function draw() {
   fill(0);
   noStroke();
   circle(width/2, height/2, radius * (innerCircleIndex + 0.05) * 2);
-  
-  
-  displayDay();
-  
-  let windowW = width / 4.5;
-  let windowH = height / 12;
-  let margin = 10;
-  allWindow(windowW, windowH, margin);
 }
+
+
+
+
+
+
+
 
 
