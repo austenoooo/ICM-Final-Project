@@ -18,6 +18,7 @@ function displayDay(){
 function allWindow(windowW, windowH, margin){
   stroke(255);
   noFill();
+  strokeWeight(2);
   
   
   // from bottom to top

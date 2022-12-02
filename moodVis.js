@@ -23,43 +23,30 @@ function displayRect(radius, totalDays){
   // calculate the position
   for (let i = 0; i < totalDays; i++){
     let angle = i * angleIncrement;
-    let alteredRadius = radius * (innerCircleIndex + outerRingIndex / 5 * (moodIndex[i] - 1));
-    let x = centerX + sin(angle) * alteredRadius;
-    let y = centerY - cos(angle) * alteredRadius;
     let xMax = centerX + sin(angle) * radius;
     let yMax = centerY - cos(angle) * radius;
-    // update the mood points position
-    if (moodIndex[i] != 0){
-      moodPoints.push({
-        x: x,
-        y: y
-      });
-    }
     
     // draw the background line
     push();
-    stroke(25);
+    stroke(30);
     strokeCap(SQUARE);
     strokeWeight(14);
     line(centerX, centerY, xMax, yMax);
     pop();
     
-    // draw the gradient rect
+    // animate this part
     push();
     translate(centerX, centerY)
     rotate(angle);
-    gradientRect(radius, moodIndex[i]);
+    gradientRect(radius, i);
     pop();
+    // draw the gradient rect
   }
-  
-  // the black circle in the center
-  fill(0);
-  noStroke();
-  circle(centerX, centerY, radius * (innerCircleIndex + 0.05) * 2);
+
 }
 
-function gradientRect(radius, moodLevel){
-  for (let c = 0; c < moodLevel; c++){
+function gradientRect(radius, id){
+  for (let c = 0; c < moodIndex[id]; c++){
     let colorStart = color(colorPalette[c]);
     let colorEnd = color(colorPalette[c+1]);
     let totalSteps = radius * outerRingIndex / 5;
@@ -83,6 +70,34 @@ function gradientRect(radius, moodLevel){
   // }
 }
 
+function drawRadialGradient(radius){
+  let centerX = width/2;
+  let centerY = height/2;
+  
+  fill(color(colorPalette[0]));
+  circle(centerX, centerY, radius * innerCircleIndex * 2);
+  
+  fill(0);
+  circle(centerX, centerY, radius * innerCircleIndex * 2 * 0.8);
+  
+  // there is five color in total
+  for (let c = 0; c < 5; c++){
+    let colorStart = color(colorPalette[c]);
+    let colorEnd = color(colorPalette[c+1]);
+    let totalSteps = radius * outerRingIndex / 5;
+    for (let y = 0; y < totalSteps; y++){
+      let currentColor = lerpColor(colorStart, colorEnd, y/totalSteps);
+      currentColor.setAlpha(70);
+      let circleRadius = radius * innerCircleIndex + c * totalSteps + y;
+      noFill();
+      stroke(currentColor);
+      strokeWeight(2);
+      circle(centerX, centerY, circleRadius * 2);
+    }
+  }
+  
+}
+
 // display the days on the circle
 function displayDays(radius, totalDays){
   let centerX = width/2;
@@ -103,5 +118,13 @@ function displayDays(radius, totalDays){
   }
 }
 
+
+function sum(array, start, end){
+  let sum = 0;
+  for(let i = start; i < end; i++){
+    sum += array[i];
+  }
+  return sum;
+}
 
 
