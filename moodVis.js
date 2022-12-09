@@ -28,9 +28,9 @@ function displayRect(radius, totalDays){
     
     // draw the background line
     push();
-    stroke(30);
+    stroke(rectColor);
     strokeCap(SQUARE);
-    strokeWeight(14);
+    strokeWeight(16);
     line(centerX, centerY, xMax, yMax);
     pop();
     
@@ -46,7 +46,8 @@ function displayRect(radius, totalDays){
 }
 
 function gradientRect(radius, id){
-  for (let c = 0; c < moodIndex[id]; c++){
+  let moodLevel = moodIndex[id];
+  for (let c = 0; c < moodLevel; c++){
     let colorStart = color(colorPalette[c]);
     let colorEnd = color(colorPalette[c+1]);
     let totalSteps = radius * outerRingIndex / 5;
@@ -60,6 +61,67 @@ function gradientRect(radius, id){
       line(-6, -circleRadius, 6, -circleRadius);
     }
   }
+
+  if (moodLevel != 0){
+    let colorStart;
+    let colorMid;
+    let colorEnd;
+    // if (moodLevel == 0){
+    //   colorStart = color(colorPalette[0]);
+    //   colorMid = color(colorPalette[0]);
+    //   colorEnd = color(colorPalette[1]);
+    // }
+    if (moodLevel == colorPalette.length){
+      colorStart = color(colorPalette[-2]);
+      colorMid = color(colorPalette[-2]);
+      colorEnd = color(colorPalette[-1]);
+    }
+    else{
+      colorStart = color(colorPalette[moodLevel - 1]);
+      colorMid = color(colorPalette[moodLevel]);
+      colorEnd = color(colorPalette[moodLevel + 1]);
+    }
+
+    
+
+    // first gradient
+    let totalStepsFirst = round(radius * outerRingIndex * 0.3);
+
+    // console.log(colorStart);
+    // console.log(colorMid);
+    // console.log(totalStepsFirst);
+    for (let y = 0; y < totalStepsFirst; y++){
+      let currentColor = lerpColor(colorStart, colorMid, y/totalStepsFirst);
+      let circleRadius = radius * innerCircleIndex + y;
+      noFill();
+      stroke(currentColor);
+      strokeWeight(2);
+      line(-7, -circleRadius, 7, -circleRadius);
+    }
+
+    // second gradient
+    let totalStepsSecond = round(radius * outerRingIndex * 0.4);
+    for (let y = 0; y < totalStepsSecond; y++){
+      let circleRadius = radius * (innerCircleIndex + outerRingIndex * 0.3) + y;
+      noFill();
+      stroke(colorMid);
+      strokeWeight(2);
+      line(-7, -circleRadius, 7, -circleRadius);
+    }
+
+    // third gradient
+    let totalStepsThird = round(radius * outerRingIndex * 0.3);
+    for (let y = 0; y < totalStepsThird; y++){
+      let currentColor = lerpColor(colorMid, colorEnd, y/totalStepsThird);
+      let circleRadius = radius * (innerCircleIndex + outerRingIndex * 0.7) + y;
+      noFill();
+      stroke(currentColor);
+      strokeWeight(2);
+      line(-7, -circleRadius, 7, -circleRadius);
+    }
+  }
+
+  
   
   // gradient cap
   // if (moodLevel != 0){
@@ -110,7 +172,7 @@ function displayDays(radius, totalDays){
     let y = centerY - cos(angle) * radius * 1.1;
     
     noStroke();
-    fill(255);
+    fill(textColor);
     textSize(radius / 23);
     textFont('forma-djr-banner');
     textAlign(CENTER, CENTER)

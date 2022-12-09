@@ -1,9 +1,46 @@
+:root{
+  --background-c: rgb(0, 0, 0);
+}
+
 html, body {
   margin: 0;
   padding: 0;
-  background-color: rgb(0, 0, 0);
+  background-color: var(--background-c);
+  color: white;
+  font-family: forma-djr-banner,sans-serif;
 }
 
 canvas {
   display: block;
+}
+
+#control_button:hover{
+  cursor: pointer;
+}
+
+.face_image{
+  width: 2%;
+}
+.face_image:hover{
+  cursor: pointer;
+}
+
+#sad{
+ display: none;
+}
+
+#lesssad{
+  display: none;
+}
+
+#neutral{
+  display: none;
+}
+
+#lesshappy{
+  display: none;
+}
+
+#happy{
+  display: none;
 }

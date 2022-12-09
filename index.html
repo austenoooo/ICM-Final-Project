@@ -9,6 +9,8 @@
 
     <script src="libraries/p5.min.js"></script>
     <script src="libraries/p5.sound.min.js"></script>
+    <!-- for p5.js webserial library -->
+    <script src="https://unpkg.com/p5-webserial@0.1.1/build/p5.webserial.js"></script>
     <!-- adding font Forma DJR Banner--> 
     <link rel="stylesheet" href="https://use.typekit.net/cew6wxu.css">
   </head>
@@ -17,13 +19,26 @@
     <button id="oestrogen_button">Oestrogen</button>
     <button id="pogestrogen_button">Pogestrogen</button>
 
+    <div class="floating">
+      <p1>How do you feel today?</p1>
+      <!-- <img src="assets/open.png" id="control_icon"> -->
+      <button id="control_button">Show Options</button>
+      <div>
+          <img src="assets/sad.png" class="face_image" id="sad">
+          <img src="assets/lesssad.png" class="face_image" id="lesssad">
+          <img src="assets/neutral.png" class="face_image" id="neutral">
+          <img src="assets/lesshappy.png" class="face_image" id="lesshappy">
+          <img src="assets/happy.png" class="face_image" id="happy">
+      </div>
+    </div>
+
     <script src="sketch.js"></script>
     <script src="moodVis.js"></script>
     <script src="oestrogenVis.js"></script>
     <script src="pogestrogenVis.js"></script>
     <script src="mainVisualUI.js"></script>
     <script src="control.js"></script>
-
+    <script src="serial.js"></script>
     
   </body>
 </html>
