@@ -8,6 +8,7 @@ html, body {
   background-color: var(--background-c);
   color: white;
   font-family: forma-djr-banner,sans-serif;
+  overflow: hidden;
 }
 
 canvas {
@@ -19,7 +20,7 @@ canvas {
 }
 
 .face_image{
-  width: 2%;
+  width: 20%;
 }
 .face_image:hover{
   cursor: pointer;
@@ -43,4 +44,79 @@ canvas {
 
 #happy{
   display: none;
+}
+
+#date{
+  position: absolute;
+  font-size: 4em;
+  font-weight: 100;
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+
+#all_windows {
+  position: absolute;
+  width: 100%;
+  top: 660px;
+  /* border: 1px solid red; */
+}
+
+.window{
+  /* position: absolute; */
+  border: 2px solid white;
+  border-radius: 10px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 20%;
+  margin-bottom: 10px;
+}
+
+#period_window{
+  top: 100px;
+  padding-bottom: 10px;
+}
+
+#moodWindow{
+  padding-bottom: 0px;
+}
+
+
+.open_button{
+  height: 20px;
+  margin-top: 3px;
+}
+
+.title{
+  font-size: 1.5em;
+  padding-left: 2px;
+}
+
+.image_row{
+  display: flex;
+  width: 60%;
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+
+.image_col{
+  flex: 20%;
+  padding: 2px;
+}
+
+.children_left {
+  display: inline-block;
+  vertical-align: middle;
+  width: 80%;
+  /* border: 0.5px solid red; */
+}
+
+
+.children_right {
+  display: inline-block;
+  vertical-align: middle;
+  width: 18%;
+  /* border: 0.5px solid red; */
+  text-align: right;
 }

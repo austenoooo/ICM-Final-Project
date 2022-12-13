@@ -20,7 +20,7 @@ let inData;
 function makePortButton() {
   // create and position a port chooser button:
   portButton = createButton("choose port");
-  portButton.position(0, 20);
+  portButton.position(windowWidth * 0.9, 20);
   // give the port button a mousepressed handler:
   portButton.mousePressed(choosePort);
 }
@@ -81,11 +81,8 @@ function closePort() {
   serial.close();
 }
 
-function sendMoodData(){
-  let dataString = moodIndex.length.toString();
-  for (let i = 0; i < moodIndex.length; i++){
-    dataString += moodIndex[i].toString();
-  }
+function sendMoodData(dayIndex, mo){
+  let dataString = mo.toString() + (dayIndex+ 1).toString();
   console.log(dataString);
   serial.println(dataString);
 }
@@ -93,8 +90,10 @@ function sendMoodData(){
 function sendStateData() {
   if (pendingState){
     serial.println("1");
+    console.log("1")
   }
   else{
     serial.println("2");
+    console.log("2");
   }
 }

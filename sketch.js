@@ -27,15 +27,17 @@ let outerRingIndex = 1 - innerCircleIndex;
 // let colorPalette = ["#FFB2E6", "#D972FF", "#8447FF", "#8CFFDA", "#C6FFE1", "#FFFFE8", "#FFFFE8"];
 // let colorPalette = ["#292F32", "#292F32", "#636E73", "#366CD9", "#5EADF2", "#F27EA9", "#F27EA9"];
 // let colorPalette = ["#70d6ff", "#70d6ff", "#ff70a6", "#ff9770", "#ffd670", "#e9ff70", "#e9ff70"];
-let colorPalette = ["#ffbe0b", "#ffbe0b","#fb5607","#ff006e","#8338ec","#3a86ff", "#3a86ff"];
+// let colorPalette = ["#ffbe0b", "#ffbe0b","#fb5607","#ff006e","#8338ec","#3a86ff", "#3a86ff"];
 // let colorPalette = ["#3a86ff", "#3a86ff", "#8338ec", "#ff006e", "#fb5607", "#ffbe0b", "#ffbe0b"];
+
+let colorPalette = ["#3a86ff", "#3a86ff", "#8338ec", "#ff006e", "#fb5607", "#ffbe0b", "#ffbe0b"];
 
 // icon assets
 let openIcon;
 let closeIcon;
 
 // start with the first page
-let currentPage = 4;
+let currentPage = 3;
 
 // period related parameters 
 let periodDuration = 6;
@@ -127,21 +129,36 @@ function draw() {
   // How many days does your period last?
   if (currentPage == 0){
     image(q1, 100, 0, height/q4.height*q4.width, height);
+    
+    pendingState = true;
+    sendStateData();
   }
   // What is your cycle duration
   else if (currentPage == 1){
     image(q2, 100, 0, height/q4.height*q4.width, height);
+
+    pendingState = true;
+    sendStateData();
   }
   // Tell us the first day of your last period
   else if (currentPage == 2){
     image(q3, 100, 0, height/q4.height*q4.width, height);
+
+    pendingState = true;
+    sendStateData();
   }
-  // choose your color palette
-  else if (currentPage == 3){
-    image(q4, 100, 0, height/q4.height*q4.width, height);
-  }
+  // // choose your color palette
+  // else if (currentPage == 3){
+  //   image(q4, 100, 0, height/q4.height*q4.width, height);
+
+  //   pendingState = true;
+  //   sendStateData();
+  // }
   // the visualization
   else{
+    // pendingState = false;
+    // sendStateData();
+
     visualization(radius);
     // the oestrogen and pogestrogen level
     if (oesVisShow){

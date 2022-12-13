@@ -1,10 +1,13 @@
+
+
 function visualization(radius){
+  let stripWidth = round(width/180);
 
   // display the day texts
-  displayDays(radius, daysCount);
+  displayDays(radius, daysCount, stripWidth);
   
   // display the mood
-  displayRect(radius, daysCount);
+  displayRect(radius, daysCount, stripWidth);
 
   // black cover
   fill(0, 0, 0, 100);
@@ -12,7 +15,7 @@ function visualization(radius){
 }
 
 
-function displayRect(radius, totalDays){
+function displayRect(radius, totalDays, stripWidth){
   moodPoints = [];
   
   let centerX = width/2;
@@ -30,7 +33,7 @@ function displayRect(radius, totalDays){
     push();
     stroke(rectColor);
     strokeCap(SQUARE);
-    strokeWeight(16);
+    strokeWeight(stripWidth * 2 + 2);
     line(centerX, centerY, xMax, yMax);
     pop();
     
@@ -45,22 +48,23 @@ function displayRect(radius, totalDays){
 
 }
 
-function gradientRect(radius, id){
+function gradientRect(radius, id, stripWidth){
   let moodLevel = moodIndex[id];
-  for (let c = 0; c < moodLevel; c++){
-    let colorStart = color(colorPalette[c]);
-    let colorEnd = color(colorPalette[c+1]);
-    let totalSteps = radius * outerRingIndex / 5;
-    for (let y = 0; y < totalSteps; y++){
-      let currentColor = lerpColor(colorStart, colorEnd, y/totalSteps);
-      let circleRadius = radius * innerCircleIndex + c * totalSteps + y;
-      noFill();
-      stroke(currentColor);
-      strokeWeight(2);
-      // circle(centerX, centerY, circleRadius * 2);
-      line(-6, -circleRadius, 6, -circleRadius);
-    }
-  }
+  console.log(stripWidth);
+  // for (let c = 0; c < moodLevel; c++){
+  //   let colorStart = color(colorPalette[c]);
+  //   let colorEnd = color(colorPalette[c+1]);
+  //   let totalSteps = radius * outerRingIndex / 5;
+  //   for (let y = 0; y < totalSteps; y++){
+  //     let currentColor = lerpColor(colorStart, colorEnd, y/totalSteps);
+  //     let circleRadius = radius * innerCircleIndex + c * totalSteps + y;
+  //     noFill();
+  //     stroke(currentColor);
+  //     strokeWeight(2);
+  //     // circle(centerX, centerY, circleRadius * 2);
+  //     line(-stripWidth, -circleRadius, stripWidth, -circleRadius);
+  //   }
+  // }
 
   if (moodLevel != 0){
     let colorStart;
@@ -96,7 +100,7 @@ function gradientRect(radius, id){
       noFill();
       stroke(currentColor);
       strokeWeight(2);
-      line(-7, -circleRadius, 7, -circleRadius);
+      line(-(stripWidth+1), -circleRadius, (stripWidth+1), -circleRadius);
     }
 
     // second gradient
@@ -106,7 +110,7 @@ function gradientRect(radius, id){
       noFill();
       stroke(colorMid);
       strokeWeight(2);
-      line(-7, -circleRadius, 7, -circleRadius);
+      line(-(stripWidth+1), -circleRadius, (stripWidth+1), -circleRadius);
     }
 
     // third gradient
@@ -117,7 +121,7 @@ function gradientRect(radius, id){
       noFill();
       stroke(currentColor);
       strokeWeight(2);
-      line(-7, -circleRadius, 7, -circleRadius);
+      line(-(stripWidth+1), -circleRadius, (stripWidth), -circleRadius);
     }
   }
 
