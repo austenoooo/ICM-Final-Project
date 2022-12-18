@@ -23,6 +23,8 @@ let moodPoints = [];
 let innerCircleIndex = 0.3;
 let outerRingIndex = 1 - innerCircleIndex;
 
+let start = false;
+
 // different color palette options
 // let colorPalette = ["#FFB2E6", "#D972FF", "#8447FF", "#8CFFDA", "#C6FFE1", "#FFFFE8", "#FFFFE8"];
 // let colorPalette = ["#292F32", "#292F32", "#636E73", "#366CD9", "#5EADF2", "#F27EA9", "#F27EA9"];
@@ -156,9 +158,16 @@ function draw() {
   // }
   // the visualization
   else{
-    // pendingState = false;
-    // sendStateData();
+    // if (start == false){
+    //   pendingState = false;
+    //   sendStateData();
+    //   start = true;
 
+    // allWindows.style.display = "block";
+    // dateText.style.display = "block";
+    // }
+    
+  
     visualization(radius);
     // the oestrogen and pogestrogen level
     if (oesVisShow){

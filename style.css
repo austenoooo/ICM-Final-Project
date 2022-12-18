@@ -47,6 +47,7 @@ canvas {
 }
 
 #date{
+  display: hidden;
   position: absolute;
   font-size: 4em;
   font-weight: 100;
@@ -56,6 +57,7 @@ canvas {
 
 
 #all_windows {
+  display: hidden;
   position: absolute;
   width: 100%;
   top: 660px;

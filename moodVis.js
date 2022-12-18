@@ -4,10 +4,10 @@ function visualization(radius){
   let stripWidth = round(width/180);
 
   // display the day texts
-  displayDays(radius, daysCount, stripWidth);
+  displayDays(radius, daysCount);
   
   // display the mood
-  displayRect(radius, daysCount, stripWidth);
+  displayRect(radius, daysCount);
 
   // black cover
   fill(0, 0, 0, 100);
@@ -15,7 +15,7 @@ function visualization(radius){
 }
 
 
-function displayRect(radius, totalDays, stripWidth){
+function displayRect(radius, totalDays){
   moodPoints = [];
   
   let centerX = width/2;
@@ -33,7 +33,7 @@ function displayRect(radius, totalDays, stripWidth){
     push();
     stroke(rectColor);
     strokeCap(SQUARE);
-    strokeWeight(stripWidth * 2 + 2);
+    strokeWeight(round(width/250)*2+4);
     line(centerX, centerY, xMax, yMax);
     pop();
     
@@ -48,9 +48,8 @@ function displayRect(radius, totalDays, stripWidth){
 
 }
 
-function gradientRect(radius, id, stripWidth){
+function gradientRect(radius, id){
   let moodLevel = moodIndex[id];
-  console.log(stripWidth);
   // for (let c = 0; c < moodLevel; c++){
   //   let colorStart = color(colorPalette[c]);
   //   let colorEnd = color(colorPalette[c+1]);
@@ -100,7 +99,7 @@ function gradientRect(radius, id, stripWidth){
       noFill();
       stroke(currentColor);
       strokeWeight(2);
-      line(-(stripWidth+1), -circleRadius, (stripWidth+1), -circleRadius);
+      line(-round(width/250)-1, -circleRadius, round(width/250)+1, -circleRadius);
     }
 
     // second gradient
@@ -110,7 +109,7 @@ function gradientRect(radius, id, stripWidth){
       noFill();
       stroke(colorMid);
       strokeWeight(2);
-      line(-(stripWidth+1), -circleRadius, (stripWidth+1), -circleRadius);
+      line(-round(width/250)-1, -circleRadius, round(width/250)+1, -circleRadius);
     }
 
     // third gradient
@@ -121,7 +120,7 @@ function gradientRect(radius, id, stripWidth){
       noFill();
       stroke(currentColor);
       strokeWeight(2);
-      line(-(stripWidth+1), -circleRadius, (stripWidth), -circleRadius);
+      line(-round(width/250)-1, -circleRadius, round(width/250)+1, -circleRadius);
     }
   }
 
